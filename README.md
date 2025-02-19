@@ -24,7 +24,7 @@ pip install -r requirements.txt
 ### 3. 启动代理
 运行以下命令启动 WebSocket 代理：
 ```bash
-python proxy.py
+python main.py
 ```
 
 ## 使用说明
