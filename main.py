@@ -5,8 +5,19 @@ import uvicorn
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import StreamingResponse
 import httpx
+from fastapi.middleware.cors import CORSMiddleware
+
 
 app = FastAPI()
+# CORS 中间件
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # 请根据实际情况修改后端地址
 BACKEND_URL = "http://localhost:6399"
