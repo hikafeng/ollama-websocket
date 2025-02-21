@@ -30,9 +30,15 @@ git clone https://github.com/hikafeng/ollama-websocket.git
 cd ollama-websocket
 ```
 
-### 2. 配置环境变量
+### 2. 生成并配置环境变量
 
-在 `.env` 文件中设置必要的环境变量（如果没有 `.env` 文件，可以复制 `.env.example` 并进行修改）：
+可以使用 Python 生成一个测试令牌：
+
+```shell
+python gen_jwt.py
+```
+
+查看 user_token.txt ,其中就有生成的Token, 在 `.env` 文件中设置必要的环境变量（如果没有 `.env` 文件，可以复制 `.env.example` 并进行修改）：
 
 ```bash
 cp .env.example .env
@@ -40,7 +46,7 @@ cp .env.example .env
 
 然后使用文本编辑器打开 `.env` 文件，修改以下内容：
 
-```
+```bash
 JWT_SECRET_KEY=your_secret_key_here
 BACKEND_URL=http://your-backend-url.com
 ```
