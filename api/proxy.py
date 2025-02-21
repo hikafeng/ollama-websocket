@@ -3,6 +3,7 @@ from fastapi import APIRouter, Request, Response, Depends
 from fastapi.responses import StreamingResponse
 from api.config import BACKEND_URL
 from api.auth import verify_token
+from api.logging import logs  # 初始化日志
 
 router = APIRouter()
 
@@ -16,7 +17,7 @@ async def proxy(request: Request, path: str, token_data: dict = Depends(verify_t
     
     # 删除 Host 头，避免影响代理
     headers.pop("host", None)
-    
+    logs.info(f"收到请求,用户: {token_data.get('user')} ,请求: {method} {target_url}")
     # 读取请求体
     body = await request.body()
 

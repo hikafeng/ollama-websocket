@@ -3,7 +3,7 @@ from fastapi import FastAPI,Request
 from fastapi.middleware.cors import CORSMiddleware
 from api.proxy import router
 from api.logging import init_logging, logs  # 初始化日志
-
+from api.config import settings
 # 初始化日志系统
 init_logging()
 # FastAPI 应用
