@@ -10,6 +10,8 @@ def verify_token(token: str = Depends(oauth2_scheme)):
     """校验 JWT 令牌"""
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        logs.info("用户访问",payload)
         return payload  # 返回解码后的 JWT 数据
     except :
         logs.exception("未授权的用户访问",token)
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="无效的 Token")
