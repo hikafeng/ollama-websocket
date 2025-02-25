@@ -70,7 +70,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-默认情况下，代理服务器将在 `http://0.0.0.0:8000` 运行。
+默认情况下，代理服务器将在 `http://0.0.0.0:30821` 运行。
 
 ---
 
@@ -86,7 +86,7 @@ import asyncio
 import json
 
 async def websocket_client():
-    uri = "ws://localhost:8000/ws"
+    uri = "ws://localhost:30821/ws"
     async with websockets.connect(uri) as websocket:
         # 发送数据
         message = json.dumps({"text": "Hello, Ollama!"})
@@ -104,7 +104,7 @@ asyncio.run(websocket_client())
 代理会将所有 HTTP 请求转发到 `BACKEND_URL`，并进行 JWT 认证：
 
 ```bash
-curl -X POST "http://localhost:8000/api/chat" \
+curl -X POST "http://localhost:30821/api/chat" \
      -H "Authorization: Bearer YOUR_JWT_TOKEN" \
      -H "Content-Type: application/json" \
      -d '{"message": "你好 Ollama!"}'
@@ -178,7 +178,7 @@ python gen_jwt.py
 修改 `main.py`：
 
 ```python
-uvicorn.run(app, host="0.0.0.0", port=9000)
+uvicorn.run(app, host="0.0.0.0", port=30821)
 ```
 
 然后重新运行：
